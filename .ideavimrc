@@ -1,0 +1,57 @@
+let mapleader=" "
+
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-entire'
+
+set ideajoin
+set relativenumber
+
+map <leader>y "+y
+map <leader>p "+p
+
+" Navigation
+nmap <leader>h <Action>(Back)
+nmap <leader>l <Action>(Forward)
+
+nmap <leader>]d <Action>(GotoNextError)
+nmap <leader>[d <Action>(GotoPreviousError)
+
+nmap <A-,> <Action>(PreviousTab)
+nmap <A-.> <Action>(NextTab)
+nmap <A-c> <Action>(CloseActiveTab)
+
+" Search
+nmap <leader>sf <Action>(GotoFile)
+nmap <leader>sg <Action>(FindInPath)
+nmap <leader>ss <Action>(GotoSymbol)
+nmap <leader>sc <Action>(GotoAction)
+nmap <leader><space> <Action>(Switcher)
+nmap <leader>sf <Action>(SearchEverywhere)
+
+" Code
+nmap <leader>ca <Action>(ShowIntentionActions)
+
+nmap <leader>e <Action>(ShowErrorDescription)
+nmap K <Action>(ShowHoverInfo)
+
+" Refactor
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>co <Action>(OptimizeImports)
+nmap <leader>cR <Action>(OptimizeImports)
+vmap <leader>rr <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>rg <Action>(Generate)
+
+nmap <leader>f <Action>(ReformatCode)
+vmap <leader>f <Action>(ReformatCode)
+nmap <leader>ca <Action>(CodeMenu)
+
+" Git
+map <leader>ga <Action>(Annotate)
+
