@@ -15,6 +15,7 @@ set relativenumber
 
 map <leader>y "+y
 map <leader>p "+p
+noremap <C-c> <Esc>
 
 " Navigation
 nmap <leader>h <Action>(Back)
@@ -34,6 +35,7 @@ nmap <leader>ss <Action>(GotoSymbol)
 nmap <leader>sc <Action>(GotoAction)
 nmap <leader><space> <Action>(Switcher)
 nmap <leader>sf <Action>(SearchEverywhere)
+nmap <leader>sR <Action>(RecentFiles)
 
 " Code
 nmap <leader>ca <Action>(ShowIntentionActions)
@@ -47,6 +49,7 @@ nmap <leader>co <Action>(OptimizeImports)
 nmap <leader>cR <Action>(OptimizeImports)
 vmap <leader>rr <Action>(Refactorings.QuickListPopupAction)
 nmap <leader>rg <Action>(Generate)
+nmap <leader>rm <Action>(ExtractMethod)
 
 nmap <leader>f <Action>(ReformatCode)
 vmap <leader>f <Action>(ReformatCode)
@@ -54,4 +57,6 @@ nmap <leader>ca <Action>(CodeMenu)
 
 " Git
 map <leader>ga <Action>(Annotate)
-
+nmap <leader>gb <Action>(Git.Branches)
+nmap <leader>gp <Action>(Git.Pull)
+nmap <leader>gP <Action>(Git.Push)
