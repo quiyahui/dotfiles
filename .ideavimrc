@@ -53,7 +53,7 @@ nmap <leader>rm <Action>(ExtractMethod)
 
 nmap <leader>f <Action>(ReformatCode)
 vmap <leader>f <Action>(ReformatCode)
-nmap <leader>ca <Action>(CodeMenu)
+nmap <leader>cA <Action>(CodeMenu)
 
 " Git
 map <leader>ga <Action>(Annotate)
