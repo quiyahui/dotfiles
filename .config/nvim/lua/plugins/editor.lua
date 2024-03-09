@@ -42,6 +42,7 @@ return {
       { "<leader>sA", Util.telescope("autocommands"), desc = "Auto Commands" },
       { "<leader>sb", Util.telescope("current_buffer_fuzzy_find"), desc = "Buffer" },
       { "<leader>sd", Util.telescope("diagnostics"), desc = "Workspace diagnostics" },
+      { "<leader>sc", Util.telescope("git_status"), desc = "Find changed git files" },
       { "<leader>sD", Util.telescope("diagnostics", { bufnr = 0 }), desc = "Document diagnostics" },
       { "<leader>sf", Util.telescope("find_files", { cwd = false }), desc = "Find Files (root dir)" },
       { "<leader>sF", Util.telescope("find_files"), desc = "Find Files (cwd)" },
@@ -68,8 +69,8 @@ return {
       { "<leader>sW", Util.telescope("grep_string", { word_match = "-w" }), desc = "Word (cwd)" },
       { "<leader>sw", Util.telescope("grep_string", { cwd = false }), mode = "v", desc = "Selection (root dir)" },
       { "<leader>sW", Util.telescope("grep_string"), mode = "v", desc = "Selection (cwd)" },
-      { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
       { "<leader>sv", Util.telescope("commands"), desc = "Commands" },
+      { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
     },
   },
 
@@ -120,6 +121,9 @@ return {
           hide_gitignored = false,
           hide_hidden = false,
         },
+        window = {
+          position = "float",
+        },
       },
     },
     keys = {
@@ -128,49 +132,10 @@ return {
   },
 
   {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    opts = {},
-    keys = {
-      {
-        "<leader>m",
-        function()
-          require("harpoon"):list():append()
-        end,
-        desc = "Harpoon: Add to list",
-      },
-      {
-        "<leader>E",
-        function()
-          local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
-        end,
-        desc = "Harpoon: List",
-      },
-      {
-        "<S-h>",
-        function()
-          require("harpoon"):list():prev()
-        end,
-        desc = "Harpoon: Prev",
-      },
-      {
-        "<S-l>",
-        function()
-          require("harpoon"):list():next()
-        end,
-        desc = "Harpoon: Next",
-      },
-    },
-  },
-
-  {
-    "mbbill/undotree",
-    keys = {
-      { "<leader>u", vim.cmd.UndotreeToggle, desc = "Undo Tree Toggle" },
-    },
+    "folke/which-key.nvim",
+    opts = function(_, opts)
+      opts.defaults["<leader>h"] = "+rest client"
+      opts.defaults["<leader>r"] = "+refactoring"
+    end,
   },
 }

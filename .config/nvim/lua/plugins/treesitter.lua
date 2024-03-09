@@ -12,6 +12,7 @@ return {
         "qmljs",
         "svelte",
         "rust",
+        "vue",
         -- required for rest-nvim/rest.nvim
         "http",
         "json",

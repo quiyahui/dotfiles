@@ -28,7 +28,7 @@ return {
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
+          elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
             cmp.complete()
@@ -48,70 +48,48 @@ return {
       })
 
       opts.experimental.ghost_text = false
+
+      local s = luasnip.snippet
+      local sn = luasnip.snippet_node
+      local t = luasnip.text_node
+      local i = luasnip.insert_node
+      local f = luasnip.function_node
+      local c = luasnip.choice_node
+      local d = luasnip.dynamic_node
+      local r = luasnip.restore_node
+      local l = require("luasnip.extras").lambda
+      local rep = require("luasnip.extras").rep
+      local p = require("luasnip.extras").partial
+      local m = require("luasnip.extras").match
+      local n = require("luasnip.extras").nonempty
+      local dl = require("luasnip.extras").dynamic_lambda
+      local fmt = require("luasnip.extras.fmt").fmt
+      local fmta = require("luasnip.extras.fmt").fmta
+      local types = require("luasnip.util.types")
+      local conds = require("luasnip.extras.conditions")
+      local conds_expand = require("luasnip.extras.conditions.expand")
+
+      local function add_snippets(filetypes, snippets)
+        for i, x in pairs(filetypes) do
+          luasnip.add_snippets(x, snippets)
+        end
+      end
+
+      add_snippets({ "vue", "svelte" }, {
+        s(
+          { trig = "useC", name = "expand composable" },
+          fmt("const {variable} = {}()", {
+            i(1, "composable"),
+            variable = l(l._1:sub(4, 4):lower() .. l._1:sub(5, -1), 1),
+          })
+        ),
+      })
     end,
   },
 
   {
-    "danymat/neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = {
-      snippet_engine = "luasnip",
-    },
-    keys = {
-      {
-        "<leader>cc",
-        function()
-          require("neogen").generate({})
-        end,
-        desc = "Doc Comment",
-      },
-    },
-    version = "*",
-  },
-
-  {
     "smjonas/inc-rename.nvim",
-    config = {},
-  },
-
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = {},
-    keys = {
-      {
-        "<leader>rr",
-        function()
-          require("refactoring").select_refactor({})
-        end,
-        desc = "Select Refactor",
-      },
-      {
-        "<leader>rp",
-        function()
-          require("refactoring").debug.printf({ below = false })
-        end,
-        desc = "Printf",
-      },
-      {
-        "<leader>rv",
-        function()
-          require("refactoring").debug.print_var({})
-        end,
-        mode = { "x", "n" },
-        desc = "Print var",
-      },
-      {
-        "<leader>rc",
-        function()
-          require("refactoring").debug.cleanup({})
-        end,
-        desc = "Debug cleanup ",
-      },
-    },
+    opts = {},
   },
 
   {
